@@ -1,0 +1,176 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{hyperref}
+\usepackage{cancel}
+
+\graphicspath{ {./images/} }
+
+\oddsidemargin=-.3in
+\evensidemargin=-.5in
+\textwidth=7in
+\topmargin=-1in
+\textheight=10in
+
+\parindent=.2in
+\pagestyle{plain}
+
+\title{Module 1 - Research}
+\author{Theo Rode}
+\date{February 2022}
+
+\begin{document}
+
+\maketitle
+For my own reference, I will write down the Pauli matrices: 
+\[ \sigma_1 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad \sigma_2 = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad \sigma_3 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \]
+
+Of course, $\sigma_1, \sigma_2, \sigma_3$ correspond to $\sigma_x, \sigma_y, \sigma_z$. We also have the group of matrices:
+\[ SU(2) = \left\{ \begin{bmatrix} z & -w^* \\ w & z^* \end{bmatrix} \biggl| z,w \in \mathbb C \text{ and } \abs{z}^2 + \abs{w}^2 = 1\right\} \]
+
+Where we have the claim that: 
+\[ \Sigma_j = e^{it\sigma_j} \in SU(2) \]
+
+for any $t \in \mathbb R$ and $j \in \{1,2,3\}$. Finally, we have one more group defined like so:
+\[ S = \left\{ e^{it(\sigma_j \otimes \sigma_k)} \biggl| t \in \mathbb R \text{ and } j,k \in \{1, 2, 3\} \right\} \]
+
+We are looking at some $\mathcal G \in S$, and if there exists a $g \in SU(2)$ such that $\mathcal G = g \otimes g$. 
+
+My initial guess is that in $S$, if we had $\sigma_j \otimes \sigma_j$, we would be able to find that the $g \in SU(2)$ created with $\sigma_j$ could be tensor producted with itself to find the matrix in $S$. I think a good way to start exploring this would be to get all the tensor products I am looking for:
+\[ \sigma_1 \otimes \sigma_1 = \left[
+    \begin{array}{cccc}
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 0 \\
+    1 & 0 & 0 & 0 \\
+    \end{array}
+    \right] \]
+\[ \sigma_1 \otimes \sigma_2 = \left[
+    \begin{array}{cccc}
+    0 & 0 & 0 & -\textit{i} \\
+    0 & 0 & \textit{i} & 0 \\
+    0 & -\textit{i} & 0 & 0 \\
+    \textit{i} & 0 & 0 & 0 \\
+    \end{array}
+    \right] \]
+\[ \sigma_1 \otimes \sigma_3 = \left[
+    \begin{array}{cccc}
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & -1 \\
+    1 & 0 & 0 & 0 \\
+    0 & -1 & 0 & 0 \\
+    \end{array}
+    \right] \]
+\[ \sigma_2 \otimes \sigma_1 = \left[
+    \begin{array}{cccc}
+    0 & 0 & 0 & -\textit{i} \\
+    0 & 0 & -\textit{i} & 0 \\
+    0 & \textit{i} & 0 & 0 \\
+    \textit{i} & 0 & 0 & 0 \\
+    \end{array}
+    \right] \]
+\[ \sigma_2 \otimes \sigma_2 = \left[
+    \begin{array}{cccc}
+    0 & 0 & 0 & -1 \\
+    0 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 0 \\
+    -1 & 0 & 0 & 0 \\
+    \end{array}
+    \right] \]
+\[ \sigma_2 \otimes \sigma_3 = \left[
+    \begin{array}{cccc}
+    0 & 0 & -\textit{i} & 0 \\
+    0 & 0 & 0 & \textit{i} \\
+    \textit{i} & 0 & 0 & 0 \\
+    0 & -\textit{i} & 0 & 0 \\
+    \end{array}
+    \right] \]
+\[ \sigma_3 \otimes \sigma_1 = \left[
+    \begin{array}{cccc}
+    0 & 1 & 0 & 0 \\
+    1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & -1 \\
+    0 & 0 & -1 & 0 \\
+    \end{array}
+    \right] \]
+\[ \sigma_3 \otimes \sigma_2 = \left[
+    \begin{array}{cccc}
+    0 & -\textit{i} & 0 & 0 \\
+    \textit{i} & 0 & 0 & 0 \\
+    0 & 0 & 0 & \textit{i} \\
+    0 & 0 & -\textit{i} & 0 \\
+    \end{array}
+    \right] \]
+\[ \sigma_3 \otimes \sigma_3 = \left[
+    \begin{array}{cccc}
+    1 & 0 & 0 & 0 \\
+    0 & -1 & 0 & 0 \\
+    0 & 0 & -1 & 0 \\
+    0 & 0 & 0 & 1 \\
+    \end{array}
+    \right] \]
+
+Now we need to worry about exponentiating matrices. This we can do quite simply if we note that, for some matrix A, and we have its eigenvalue matrix $D$ and eigenvector matrix $V$, we can write:
+\[ A = VDV^{-1} \]
+
+So we can therefore say:
+\[ A^n = VD^nV^{-1} \]
+
+And as $D$ is simply a diagonal matrix, it will look like this: 
+\[ D^n = \begin{bmatrix}
+    \lambda_1^n & \cdots & 0 \\
+    \vdots & \ddots & \vdots \\ 
+    0 & \cdots & \lambda_k^n
+\end{bmatrix} \]
+
+This might seem weird if we are looking for $A^n$, but note that: 
+\[ e^x = \sum_n \frac{x^n}{n!} \]
+
+So, if we have:
+\[ e^A = \sum_n \frac{A^n}{n!} = \sum_n \frac{VD^nV^{-1}}{n!} = V \sum_n \begin{bmatrix}
+    \frac{\lambda_1^n}{n!} & \cdots & 0 \\
+    \vdots & \ddots & \vdots \\ 
+    0 & \cdots & \frac{\lambda_k^n}{n!}
+\end{bmatrix}  V^{-1} = V\begin{bmatrix}
+    e^{\lambda_1} & \cdots & 0 \\
+    \vdots & \ddots & \vdots \\ 
+    0 & \cdots & e^{\lambda_k}
+\end{bmatrix}V^{-1}\]
+
+Nice. To compute $SU(2)$, we can use this, but we must start by finding eigenvectors/values for the Pauli matrices: 
+\[ \sigma_1 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}  \]
+\[ \begin{pmatrix} 0-\lambda & 1 \\ 1 & 0-\lambda \end{pmatrix}  \]
+\[ (-\lambda)^2 -1 = 0 \]
+\[ \lambda^2 = 1 \]
+\[ \lambda = \pm 1 \]
+
+\[ \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{bmatrix}
+    x \\ y
+\end{bmatrix} = \begin{bmatrix}
+    x \\ y
+\end{bmatrix} \]
+\[ y = x, \quad x = y \]
+\[ \begin{bmatrix}
+    \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}}
+\end{bmatrix} \]
+
+\[ \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{bmatrix}
+    x \\ y
+\end{bmatrix} = \begin{bmatrix}
+    -x \\ -y
+\end{bmatrix} \]
+\[ y = -x, \quad x = -y \]
+\[ V = \begin{bmatrix}
+    \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ 
+    -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+\end{bmatrix}, \quad D = \begin{bmatrix}
+    -1 & 0 \\ 0 & 1 
+\end{bmatrix} \]
+
+\end{document}
