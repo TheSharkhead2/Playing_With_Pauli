@@ -144,13 +144,13 @@ So, if we have:
 \end{bmatrix}V^{-1}\]
 
 Nice. To compute $SU(2)$, we can use this, but we must start by finding eigenvectors/values for the Pauli matrices: 
-\[ \sigma_1 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}  \]
-\[ \begin{pmatrix} 0-\lambda & 1 \\ 1 & 0-\lambda \end{pmatrix}  \]
+\[ \sigma_1 = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}  \]
+\[ \begin{bmatrix} 0-\lambda & 1 \\ 1 & 0-\lambda \end{bmatrix}  \]
 \[ (-\lambda)^2 -1 = 0 \]
 \[ \lambda^2 = 1 \]
 \[ \lambda = \pm 1 \]
 
-\[ \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{bmatrix}
+\[ \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix}
     x \\ y
 \end{bmatrix} = \begin{bmatrix}
     x \\ y
@@ -160,7 +160,7 @@ Nice. To compute $SU(2)$, we can use this, but we must start by finding eigenvec
     \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}}
 \end{bmatrix} \]
 
-\[ \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{bmatrix}
+\[ \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix}
     x \\ y
 \end{bmatrix} = \begin{bmatrix}
     -x \\ -y
@@ -172,5 +172,414 @@ Nice. To compute $SU(2)$, we can use this, but we must start by finding eigenvec
 \end{bmatrix}, \quad D = \begin{bmatrix}
     -1 & 0 \\ 0 & 1 
 \end{bmatrix} \]
+
+\[ \sigma_2 = \begin{bmatrix}
+    0 & -i \\ 
+    i & 0
+\end{bmatrix} \]
+\[ \begin{bmatrix}
+    0 - \lambda & -i \\ 
+    i & 0 - \lambda
+\end{bmatrix} \]
+\[ (-\lambda)^2 - 1 = 0 \]
+\[ \lambda^2 = 1 \]
+\[ \lambda = \pm 1 \]
+
+\[ \begin{bmatrix}
+    0 & -i \\ 
+    i & 0
+\end{bmatrix}\begin{bmatrix}
+    x \\ y
+\end{bmatrix} = \begin{bmatrix}
+    x \\ y
+\end{bmatrix} \]
+\[ -iy = x, \quad ix = y \]
+\[ \begin{bmatrix}
+    -\frac{1}{\sqrt{2}}i \\
+    \frac{1}{\sqrt{2}}
+\end{bmatrix} \]
+\[ \begin{bmatrix}
+    0 & -i \\ 
+    i & 0
+\end{bmatrix}\begin{bmatrix}
+    x \\ y
+\end{bmatrix} = \begin{bmatrix}
+    -x \\ -y
+\end{bmatrix} \]
+\[ -iy = -x, \quad ix = -y \]
+\[ \begin{bmatrix}
+    -\frac{1}{\sqrt{2}}i \\ 
+    -\frac{1}{\sqrt{2}}
+\end{bmatrix} \]
+\[ V = \begin{bmatrix}
+    -\frac{1}{\sqrt{2}}i & -\frac{1}{\sqrt{2}}i \\ 
+    \frac{1}{\sqrt{2}} & - \frac{1}{\sqrt{2}}
+\end{bmatrix} , \quad D = \begin{bmatrix}
+    -1 & 0 \\ 0 & 1
+\end{bmatrix} \]
+
+And I got lazy:
+\[ \sigma_3 = \begin{bmatrix}
+    1 & 0 \\ 0 & -1
+\end{bmatrix} \]
+
+\[ V = \begin{bmatrix}
+    0 & 1 \\ 1 & 0
+\end{bmatrix}, 
+\quad D = \begin{bmatrix}
+    -1 & 0 \\ 0 & 1
+\end{bmatrix} \]
+
+I just want to prove to myself that exponentiating this actually results in something in $SU(2)$... So:
+\[ \sigma_1 = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}  \]
+\[ \sigma_1 = \begin{bmatrix}
+    \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ 
+    -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+\end{bmatrix}\begin{bmatrix}
+    -1 & 0 \\ 0 & 1 
+\end{bmatrix}V^{-1}  \]
+ I will computationally find $V^{-1}$ at some point, I just don't want to solve for it properly. Anyway, this means that we can say:
+ \[ e^{it\sigma_1} = \begin{bmatrix}
+    \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ 
+    -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+\end{bmatrix}\begin{bmatrix}
+    e^{it(-1)} & 0 \\ 0 & e^{it(1)} 
+\end{bmatrix}V^{-1} \]
+
+Actually exponentiating this with a calculator: 
+\[ e^{it\sigma_1} =  \begin{bmatrix}
+    0.5e^{it} + 0.5e^{-it} & 0.5e^{it} - 0.5e^{-it} \\
+     0.5e^{it} - 0.5e^{-it} & 0.5e^{it} + 0.5e^{-it}
+\end{bmatrix} \]
+\[ e^{it\sigma_2} = \begin{bmatrix}
+    0.5e^{it} + 0.5e^{-it} & -0.5i\cdot e^{it} + 0.5i \cdot e^{-it} \\
+     0.5i \cdot e^{it} - 0.5i\cdot e^{-it}  & 0.5e^{it} + 0.5e^{-it}
+\end{bmatrix} \]
+
+\[ e^{it\sigma_3} = \begin{bmatrix}
+    e^{it} &  0 \\
+     0 &  e^{-it}
+\end{bmatrix} \]
+
+Just to prove to myself that these make sense in $SU(2)$, for $\sigma_3$ you can see that the complex conjugate requirements are met pretty clearly. As for the normalization, we should see:
+\[ \abs{e^{it}}^2 = 1 \]
+
+Which wolfram alpha says is true. Okay I am convinced. 
+
+Now I wanted to look at what happens when we calculate the exponentiations of S. We get the following: 
+\[ e^{it(\sigma_1 \otimes \sigma_1)} = \left[
+    \begin{array}{cccc}
+    0.5e^{it} + 0.5e^{-it} & 0 & 0 & 0.5e^{it} - 0.5e^{-it} \\
+    0 & 0.5e^{it} + 0.5e^{-it} & 0.5e^{it} - 0.5e^{-it} & 0 \\
+    0 & 0.5e^{it} - 0.5e^{-it} & 0.5e^{it} + 0.5e^{-it} & 0 \\
+    0.5e^{it} - 0.5e^{-it} & 0 & 0 & 0.5e^{it} + 0.5e^{-it} \\
+    \end{array}
+    \right] \]
+
+\[ e^{it(\sigma_1 \otimes \sigma_2)} = \left[
+    \begin{array}{cccc}
+    0.5e^{it} + 0.5e^{-it} & 0 & 0 & -0.5ie^{it} + 0.5ie^{-it} \\
+    0 & 0.5e^{it} + 0.5e^{-it} & 0.5ie^{it} - 0.5ie^{-it} & 0 \\
+    0 & -0.5ie^{it} + 0.5ie^{-it} & 0.5e^{it} + 0.5e^{-it} & 0 \\
+    0.5ie^{it} - 0.5ie^{-it} & 0 & 0 & 0.5e^{it} + 0.5e^{-it} \\
+    \end{array}
+    \right] \]
+\[ e^{it(\sigma_1 \otimes \sigma_3)} = \left[
+    \begin{array}{cccc}
+    0.5e^{it} + 0.5e^{-it} & 0 & 0.5e^{it} - 0.5e^{-it} & 0 \\
+    0 & 0.5e^{it} + 0.5e^{-it} & 0 & -0.5e^{it} + 0.5e^{-it} \\
+    0.5e^{it} - 0.5e^{-it} & 0 & 0.5e^{it} + 0.5e^{-it} & 0 \\
+    0 & -0.5e^{it} + 0.5e^{-it} & 0 & 0.5e^{it} + 0.5e^{-it} \\
+    \end{array}
+    \right] \] 
+\[ e^{it(\sigma_2 \otimes \sigma_1)} = \left[
+    \begin{array}{cccc}
+    0.5e^{it} + 0.5e^{-it} & 0 & 0 & -0.5ie^{it} + 0.5ie^{-it} \\
+    0 & 0.5e^{it} + 0.5e^{-it} & -0.5ie^{it} + 0.5ie^{-it} & 0 \\
+    0 & 0.5ie^{it} - 0.5ie^{-it} & 0.5e^{it} + 0.5e^{-it} & 0 \\
+    0.5ie^{it} - 0.5ie^{-it} & 0 & 0 & 0.5e^{it} + 0.5e^{-it} \\
+    \end{array}
+    \right] \] 
+\[ e^{it(\sigma_2 \otimes \sigma_2)} = \left[
+    \begin{array}{cccc}
+    0.5e^{it} + 0.5e^{-it} & 0 & 0 & -0.5e^{it} + 0.5e^{-it} \\
+    0 & 0.5e^{it} + 0.5e^{-it} & 0.5e^{it} - 0.5e^{-it} & 0 \\
+    0 & 0.5e^{it} - 0.5e^{-it} & 0.5e^{it} + 0.5e^{-it} & 0 \\
+    -0.5e^{it} + 0.5e^{-it} & 0 & 0 & 0.5e^{it} + 0.5e^{-it} \\
+    \end{array}
+    \right] \] 
+\[ e^{it(\sigma_2 \otimes \sigma_3)} = \left[
+    \begin{array}{cccc}
+    0.5e^{it} + 0.5e^{-it} & 0 & -0.5ie^{it} + 0.5ie^{-it} & 0 \\
+    0 & 0.5e^{it} + 0.5e^{-it} & 0 & 0.5ie^{it} - 0.5ie^{-it} \\
+    0.5ie^{it} - 0.5ie^{-it} & 0 & 0.5e^{it} + 0.5e^{-it} & 0 \\
+    0 & -0.5ie^{it} + 0.5ie^{-it} & 0 & 0.5e^{it} + 0.5e^{-it} \\
+    \end{array}
+    \right] \] 
+\[ e^{it(\sigma_3 \otimes \sigma_1)} = \left[
+    \begin{array}{cccc}
+    0.5e^{it} + 0.5e^{-it} & 0.5e^{it} - 0.5e^{-it} & 0 & 0 \\
+    0.5e^{it} - 0.5e^{-it} & 0.5e^{it} + 0.5e^{-it} & 0 & 0 \\
+    0 & 0 & 0.5e^{it} + 0.5e^{-it} & -0.5e^{it} + 0.5e^{-it} \\
+    0 & 0 & -0.5e^{it} + 0.5e^{-it} & 0.5e^{it} + 0.5e^{-it} \\
+    \end{array}
+    \right] \] 
+\[ e^{it(\sigma_3 \otimes \sigma_2)} = \left[
+    \begin{array}{cccc}
+    0.5e^{it} + 0.5e^{-it} & -0.5ie^{it} + 0.5ie^{-it} & 0 & 0 \\
+    0.5ie^{it} - 0.5ie^{-it} & 0.5e^{it} + 0.5e^{-it} & 0 & 0 \\
+    0 & 0 & 0.5e^{it} + 0.5e^{-it} & 0.5ie^{it} - 0.5ie^{-it} \\
+    0 & 0 & -0.5ie^{it} + 0.5ie^{-it} & 0.5e^{it} + 0.5e^{-it} \\
+    \end{array}
+    \right] \] 
+\[ e^{it(\sigma_3 \otimes \sigma_3)} = \left[
+    \begin{array}{cccc}
+    1.0e^{it} & 0 & 0 & 0 \\
+    0 & 1.0e^{-it} & 0 & 0 \\
+    0 & 0 & 1.0e^{-it} & 0 \\
+    0 & 0 & 0 & 1.0e^{it} \\
+    \end{array}
+    \right] \] 
+
+Now what happens when instead of taking the tensor product and then exponentiating it, if we do the opposite (what one would expect to yeild the same result):
+\[ e^{it\sigma_1} \otimes e^{it\sigma_1} = \\ \] \[ \resizebox{\textwidth}{!} { $\left[
+    \begin{array}{cccc}
+    0.25(e^{it} + e^{-it})^2 & ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) & 0.25(e^{it} - e^{-it})^2 \\
+    ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) & 0.25(e^{it} + e^{-it})^2 & 0.25(e^{it} - e^{-it})^2 & ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) \\
+    ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) & 0.25(e^{it} - e^{-it})^2 & 0.25(e^{it} + e^{-it})^2 & ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) \\
+    0.25(e^{it} - e^{-it})^2 & ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) & 0.25(e^{it} + e^{-it})^2 \\
+    \end{array}
+    \right] $ } \]
+\[ e^{it\sigma_1} \otimes e^{it\sigma_2} = \\ \] \[ \resizebox{\textwidth}{!} { $\left[
+    \begin{array}{cccc}
+    0.25(e^{it} + e^{-it})^2 & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} - 0.5e^{-it}}) \\
+    ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) & 0.25(e^{it} + e^{-it})^2 & ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} - 0.5e^{-it}}) & ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) \\
+    ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} - 0.5e^{-it}}) & 0.25(e^{it} + e^{-it})^2 & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) \\
+    ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} - 0.5e^{-it}}) & ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) & 0.25(e^{it} + e^{-it})^2 \\
+    \end{array}
+    \right] $}\]
+\[ e^{it\sigma_1} \otimes e^{it\sigma_3} = \\ \] \[\left[
+    \begin{array}{cccc}
+    ({0.5e^{it} + 0.5e^{-it}})e^{it} & 0 & ({0.5e^{it} - 0.5e^{-it}})e^{it} & 0 \\
+    0 & ({0.5e^{it} + 0.5e^{-it}})e^{-it} & 0 & ({0.5e^{it} - 0.5e^{-it}})e^{-it} \\
+    ({0.5e^{it} - 0.5e^{-it}})e^{it} & 0 & ({0.5e^{it} + 0.5e^{-it}})e^{it} & 0 \\
+    0 & ({0.5e^{it} - 0.5e^{-it}})e^{-it} & 0 & ({0.5e^{it} + 0.5e^{-it}})e^{-it} \\
+    \end{array}
+    \right] \]
+\[ e^{it\sigma_2} \otimes e^{it\sigma_1} = \\ \] \[ \resizebox{\textwidth}{!} { $ \left[
+    \begin{array}{cccc}
+    0.25(e^{it} + e^{-it})^2 & ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} - 0.5e^{-it}}) \\
+    ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) & 0.25(e^{it} + e^{-it})^2 & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} - 0.5e^{-it}}) & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) \\
+    ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} - 0.5e^{-it}}) & 0.25(e^{it} + e^{-it})^2 & ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) \\
+    ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} - 0.5e^{-it}}) & ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) & 0.25(e^{it} + e^{-it})^2 \\
+    \end{array}
+    \right] $} \]
+\[ e^{it\sigma_2} \otimes e^{it\sigma_2} = \\ \] \[\resizebox{\textwidth}{!} { $ \left[
+    \begin{array}{cccc}
+    0.25(e^{it} + e^{-it})^2 & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) & 0.25{-ie^{it} + ie^{-it}}^2 \\
+    ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) & 0.25(e^{it} + e^{-it})^2 & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5ie^{it} - 0.5ie^{-it}}) & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) \\
+    ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5ie^{it} - 0.5ie^{-it}}) & 0.25(e^{it} + e^{-it})^2 & ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) \\
+    0.25{ie^{it} - ie^{-it}}^2 & ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) & ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) & 0.25(e^{it} + e^{-it})^2 \\
+    \end{array}
+    \right] $} \]
+\[ e^{it\sigma_2} \otimes e^{it\sigma_3} = \\ \] \[ \left[
+    \begin{array}{cccc}
+    ({0.5e^{it} + 0.5e^{-it}})e^{it} & 0 & ({-0.5ie^{it} + 0.5ie^{-it}})e^{it} & 0 \\
+    0 & ({0.5e^{it} + 0.5e^{-it}})e^{-it} & 0 & ({-0.5ie^{it} + 0.5ie^{-it}})e^{-it} \\
+    ({0.5ie^{it} - 0.5ie^{-it}})e^{it} & 0 & ({0.5e^{it} + 0.5e^{-it}})e^{it} & 0 \\
+    0 & ({0.5ie^{it} - 0.5ie^{-it}})e^{-it} & 0 & ({0.5e^{it} + 0.5e^{-it}})e^{-it} \\
+    \end{array}
+    \right]  \]
+\[ e^{it\sigma_3} \otimes e^{it\sigma_1} = \\ \] \[  \left[
+    \begin{array}{cccc}
+    ({0.5e^{it} + 0.5e^{-it}})e^{it} & ({0.5e^{it} - 0.5e^{-it}})e^{it} & 0 & 0 \\
+    ({0.5e^{it} - 0.5e^{-it}})e^{it} & ({0.5e^{it} + 0.5e^{-it}})e^{it} & 0 & 0 \\
+    0 & 0 & ({0.5e^{it} + 0.5e^{-it}})e^{-it} & ({0.5e^{it} - 0.5e^{-it}})e^{-it} \\
+    0 & 0 & ({0.5e^{it} - 0.5e^{-it}})e^{-it} & ({0.5e^{it} + 0.5e^{-it}})e^{-it} \\
+    \end{array}
+    \right]  \]
+\[ e^{it\sigma_3} \otimes e^{it\sigma_2} = \\ \] \[ \left[
+    \begin{array}{cccc}
+    ({0.5e^{it} + 0.5e^{-it}})e^{it} & ({-0.5ie^{it} + 0.5ie^{-it}})e^{it} & 0 & 0 \\
+    ({0.5ie^{it} - 0.5ie^{-it}})e^{it} & ({0.5e^{it} + 0.5e^{-it}})e^{it} & 0 & 0 \\
+    0 & 0 & ({0.5e^{it} + 0.5e^{-it}})e^{-it} & ({-0.5ie^{it} + 0.5ie^{-it}})e^{-it} \\
+    0 & 0 & ({0.5ie^{it} - 0.5ie^{-it}})e^{-it} & ({0.5e^{it} + 0.5e^{-it}})e^{-it} \\
+    \end{array}
+    \right]   \]
+\[ e^{it\sigma_3} \otimes e^{it\sigma_3} = \\ \] \[ \left[
+    \begin{array}{cccc}
+    e^{2.0it} & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & e^{-2.0it} \\
+    \end{array}
+    \right] \]
+
+So that is a mess, but I think we can actually simplify this: 
+\[ ({0.5e^{it} - 0.5e^{-it}})({0.5e^{it} + 0.5e^{-it}}) \]
+
+Which this is a difference of squares:
+\[ \frac{1}{4}e^{2it} - \frac{1}{4}e^{-2it} \] 
+\[ \frac{1}{4}\left( \cos{2t} + i\sin{2t} - \cos{(-2t)} - i\sin{(-2t)} \right) \]
+\[ \frac{1}{4}\left( 2i\sin{2t} \right) \]
+
+Double angle identity: 
+\[ i\sin{t}\cos{t} \]
+
+We should also simplify:
+\[ ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) \]
+\[ -\frac{1}{4}ie^{2it} - \frac{1}{4}i + \frac{1}{4}i + \frac{1}{4}ie^{-2it} \]
+\[ \frac{1}{4}i\left( e^{2it} - e^{-2it} \right) \]
+\[ i \left(i\sin{t}\cos{t}\right) \]
+\[ -\sin{t}\cos{t} \]
+
+And... 
+\[ ({-0.5ie^{it} + 0.5ie^{-it}})({0.5e^{it} - 0.5e^{-it}}) \]
+\[ -\frac{1}{4}ie^{2it} + \frac{1}{4}i + \frac{1}{4}i - \frac{1}{4}ie^{-2it} \]
+\[ \frac{1}{4}i\left( e^{2it} + 2 - e^{-2it} \right) \]
+\[ \frac{1}{4}i\left( e^{2it} - e^{-2it} \right) + \frac{1}{2}i \]
+\[ -\sin{t}\cos{t} + \frac{1}{2}i \]
+
+And And... 
+\[ ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} + 0.5e^{-it}}) \]
+\[ \frac{1}{4}ie^{2it} + \frac{1}{4}i - \frac{1}{4}i - \frac{1}{4}ie^{-2it} \]
+\[ \frac{1}{4}i\left( e^{2it} - e^{-2it} \right) \]
+\[ -\sin{t}\cos{t} \]
+
+$\text{And}^3$... 
+\[ ({0.5ie^{it} - 0.5ie^{-it}})({0.5e^{it} - 0.5e^{-it}}) \]
+\[ \frac{1}{4}ie^{2it} - \frac{1}{4}i - \frac{1}{4}i + \frac{1}{4}ie^{-2it} \]
+\[ \frac{1}{4}i\left(e^{2it} + e^{-2it} \right) - \frac{1}{2}i \]
+\[ \frac{1}{2}i\cos{2t} - \frac{1}{2}i \]
+
+$\text{And}^4$... 
+\[ ({-0.5ie^{it} + 0.5ie^{-it}})({0.5ie^{it} - 0.5ie^{-it}}) \]
+\[ \frac{1}{4}e^{2it} - \frac{1}{4} - \frac{1}{4} + \frac{1}{4}e^{-2it} \]
+\[ \frac{1}{4}\left(e^{2it} + e^{-2it}\right) - \frac{1}{2} \]
+\[ \frac{1}{2}\cos{2t} - \frac{1}{2}  \]
+
+It would also be nice to simplify:
+\[ ({0.5e^{it} + 0.5e^{-it}})e^{it} \]
+\[ \frac{1}{2}e^{2it} + \frac{1}{2} \]
+
+And this thing: 
+\[ ({0.5e^{it} - 0.5e^{-it}})e^{it} \]
+\[ \frac{1}{2}e^{2it} - \frac{1}{2} \]
+
+And this other thing: 
+\[ ({0.5e^{it} + 0.5e^{-it}})e^{-it} \]
+\[ \frac{1}{2} + \frac{1}{2}e^{-2it} \]
+
+Another thing: 
+\[ ({0.5ie^{it} - 0.5ie^{-it}})e^{-it} \]
+\[ \frac{1}{2}i - \frac{1}{2}ie^{-2it} \]
+
+Another another thing: 
+\[ ({-0.5ie^{it} + 0.5ie^{-it}})e^{it} \]
+\[ -\frac{1}{2}ie^{2it} + \frac{1}{2}i \]
+
+Another$^3$ thing: 
+\[ ({-0.5ie^{it} + 0.5ie^{-it}})e^{-it} \]
+\[ -\frac{1}{2}i + \frac{1}{2}ie^{-2it} \]
+
+Finally (hopefully): 
+\[ ({0.5e^{it} - 0.5e^{-it}})e^{-it} \]
+\[ \frac{1}{2} - \frac{1}{2}e^{-2it} \]
+
+\[ e^{it\sigma_1} \otimes e^{it\sigma_1} = \\ \] \[ \left[
+    \begin{array}{cccc}
+    0.25(e^{it} + e^{-it})^2 & i\sin{t}\cos{t} & i\sin{t}\cos{t} & 0.25(e^{it} - e^{-it})^2 \\
+    i\sin{t}\cos{t} & 0.25(e^{it} + e^{-it})^2 & 0.25(e^{it} - e^{-it})^2 & i\sin{t}\cos{t} \\
+    i\sin{t}\cos{t} & 0.25(e^{it} - e^{-it})^2 & 0.25(e^{it} + e^{-it})^2 & i\sin{t}\cos{t} \\
+    0.25(e^{it} - e^{-it})^2 & i\sin{t}\cos{t} & i\sin{t}\cos{t} & 0.25(e^{it} + e^{-it})^2 \\
+    \end{array}
+    \right]  \]
+\[ e^{it\sigma_1} \otimes e^{it\sigma_2} = \\ \] \[ \left[
+    \begin{array}{cccc}
+    0.25(e^{it} + e^{-it})^2 & -\sin{t}\cos{t} & i\sin{t}\cos{t} & -\sin{t}\cos{t} + \frac{1}{2}i \\
+    -\sin{t}\cos{t} & 0.25(e^{it} + e^{-it})^2 & \frac{1}{2}i\cos{2t} - \frac{1}{2}i & i\sin{t}\cos{t} \\
+    i\sin{t}\cos{t} & -\sin{t}\cos{t} + \frac{1}{2}i & 0.25(e^{it} + e^{-it})^2 & -\sin{t}\cos{t} \\
+    \frac{1}{2}i\cos{2t} - \frac{1}{2}i & i\sin{t}\cos{t} & -\sin{t}\cos{t} & 0.25(e^{it} + e^{-it})^2 \\
+    \end{array}
+    \right] \]
+\[ e^{it\sigma_1} \otimes e^{it\sigma_3} = \\ \] \[\left[
+    \begin{array}{cccc}
+    \frac{1}{2}e^{2it} + \frac{1}{2} & 0 & \frac{1}{2}e^{2it} - \frac{1}{2} & 0 \\
+    0 & \frac{1}{2} + \frac{1}{2}e^{-2it} & 0 & \frac{1}{2} - \frac{1}{2}e^{-2it} \\
+    \frac{1}{2}e^{2it} - \frac{1}{2} & 0 & \frac{1}{2}e^{2it} + \frac{1}{2} & 0 \\
+    0 & \frac{1}{2} - \frac{1}{2}e^{-2it} & 0 & \frac{1}{2} + \frac{1}{2}e^{-2it} \\
+    \end{array}
+    \right] \]
+\[ e^{it\sigma_2} \otimes e^{it\sigma_1} = \\ \] \[  \left[
+    \begin{array}{cccc}
+    0.25(e^{it} + e^{-it})^2 & i\sin{t}\cos{t} & -\sin{t}\cos{t} & -\sin{t}\cos{t} + \frac{1}{2}i \\
+    i\sin{t}\cos{t} & 0.25(e^{it} + e^{-it})^2 & -\sin{t}\cos{t} + \frac{1}{2}i & -\sin{t}\cos{t} \\
+    -\sin{t}\cos{t} & \frac{1}{2}i\cos{2t} - \frac{1}{2}i & 0.25(e^{it} + e^{-it})^2 & i\sin{t}\cos{t} \\
+    \frac{1}{2}i\cos{2t} - \frac{1}{2}i & -\sin{t}\cos{t} & i\sin{t}\cos{t} & 0.25(e^{it} + e^{-it})^2 \\
+    \end{array}
+    \right]  \]
+\[ e^{it\sigma_2} \otimes e^{it\sigma_2} = \\ \] \[\left[
+    \begin{array}{cccc}
+    0.25(e^{it} + e^{-it})^2 & -\sin{t}\cos{t} & -\sin{t}\cos{t} & 0.25{-ie^{it} + ie^{-it}}^2 \\
+    -\sin{t}\cos{t} & 0.25(e^{it} + e^{-it})^2 & \frac{1}{2}\cos{2t} - \frac{1}{2} & -\sin{t}\cos{t} \\
+    -\sin{t}\cos{t} & \frac{1}{2}\cos{2t} - \frac{1}{2} & 0.25(e^{it} + e^{-it})^2 & -\sin{t}\cos{t} \\
+    0.25{ie^{it} - ie^{-it}}^2 & -\sin{t}\cos{t} & -\sin{t}\cos{t} & 0.25(e^{it} + e^{-it})^2 \\
+    \end{array}
+    \right]  \]
+\[ e^{it\sigma_2} \otimes e^{it\sigma_3} = \\ \] \[ \left[
+    \begin{array}{cccc}
+    \frac{1}{2}e^{2it} + \frac{1}{2} & 0 & -\frac{1}{2}ie^{2it} + \frac{1}{2}i & 0 \\
+    0 & \frac{1}{2} + \frac{1}{2}e^{-2it} & 0 & -\frac{1}{2}i + \frac{1}{2}ie^{-2it} \\
+    ({0.5ie^{it} - 0.5ie^{-it}})e^{it} & 0 & \frac{1}{2}e^{2it} + \frac{1}{2} & 0 \\
+    0 & \frac{1}{2}i - \frac{1}{2}ie^{-2it} & 0 & \frac{1}{2} + \frac{1}{2}e^{-2it} \\
+    \end{array}
+    \right]  \]
+\[ e^{it\sigma_3} \otimes e^{it\sigma_1} = \\ \] \[  \left[
+    \begin{array}{cccc}
+    \frac{1}{2}e^{2it} + \frac{1}{2} & \frac{1}{2}e^{2it} - \frac{1}{2} & 0 & 0 \\
+    \frac{1}{2}e^{2it} - \frac{1}{2} & \frac{1}{2}e^{2it} + \frac{1}{2} & 0 & 0 \\
+    0 & 0 & \frac{1}{2} + \frac{1}{2}e^{-2it} & \frac{1}{2} - \frac{1}{2}e^{-2it} \\
+    0 & 0 & \frac{1}{2} - \frac{1}{2}e^{-2it} & \frac{1}{2} + \frac{1}{2}e^{-2it} \\
+    \end{array}
+    \right]  \]
+\[ e^{it\sigma_3} \otimes e^{it\sigma_2} = \\ \] \[ \left[
+    \begin{array}{cccc}
+    \frac{1}{2}e^{2it} + \frac{1}{2} & -\frac{1}{2}ie^{2it} + \frac{1}{2}i & 0 & 0 \\
+    ({0.5ie^{it} - 0.5ie^{-it}})e^{it} & \frac{1}{2}e^{2it} + \frac{1}{2} & 0 & 0 \\
+    0 & 0 & \frac{1}{2} + \frac{1}{2}e^{-2it} & -\frac{1}{2}i + \frac{1}{2}ie^{-2it} \\
+    0 & 0 & \frac{1}{2}i - \frac{1}{2}ie^{-2it} & \frac{1}{2} + \frac{1}{2}e^{-2it} \\
+    \end{array}
+    \right]   \]
+\[ e^{it\sigma_3} \otimes e^{it\sigma_3} = \\ \] \[ \left[
+    \begin{array}{cccc}
+    e^{2.0it} & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & e^{-2.0it} \\
+    \end{array}
+    \right] \]
+
+Cool! That gives us a bunch of matrices that we can compare. The first comparison that jumps out to me is the matrix from $S$: 
+\[ e^{it(\sigma_3 \otimes \sigma_3)} = \left[
+    \begin{array}{cccc}
+    1.0e^{it} & 0 & 0 & 0 \\
+    0 & 1.0e^{-it} & 0 & 0 \\
+    0 & 0 & 1.0e^{-it} & 0 \\
+    0 & 0 & 0 & 1.0e^{it} \\
+    \end{array}
+    \right] \]
+
+And the other double $\sigma_3$ matrix from $SU(2)$:
+\[ e^{it\sigma_3} \otimes e^{it\sigma_3} = \\ \] \[ \left[
+    \begin{array}{cccc}
+    e^{2.0it} & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & e^{-2.0it} \\
+    \end{array}
+    \right] \]
+
+We can pretty clearly see that at $t=0$, these matrices are equal. Suggesting possibly that for no ``time'' passing, we can find that: 
+\[ e^{it(\sigma_3 \otimes \sigma_3)} = e^{it\sigma_3} \otimes e^{it\sigma_3} \]
 
 \end{document}
