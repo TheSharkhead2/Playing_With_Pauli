@@ -1,3 +1,5 @@
-# Module 1 Research
+# Module 1 Research - Playing with Pauli
 
-This is a placeholder description. If you are reading this description it means I was too lazy to actually describe my project.
+This is a open-ended project for my Quantum Information and Computation class where we were given special sets of matrices defined from the Pauli matrices (a group of matrices describing preparing qubits in certain quantum states) and were asked to find when we could use the tensor product of matrices from one group to get the matrices from another (a better description is in the [LaTeX file](./math/module1_research.pdf)).
+
+I took a computational approach to this problem, opting to use symbolic engines to compute the resulting matrices and find where certain values for t would give the same matricies both ways. Of course, this resulted in many headaches trying to use Symbolics.jl (which I couldn't get to work with imaginary numbers and exponents...), so I settled on SymPy for most of the calculations. 
