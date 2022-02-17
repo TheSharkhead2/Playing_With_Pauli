@@ -25,10 +25,26 @@ const sigma_z_exp = eigvecs(sigma_z) * diagm(exp.((t*im) .* eigvals(sigma_z))) *
 
 const pauliExp = [sigma_x_exp, sigma_y_exp, sigma_z_exp]
 
+# for (j, sigma_j) in enumerate(pauliMatrices)
+#     for (k, sigma_k) in enumerate(pauliMatrices)
+#         println("$j, $k:")
+#         expr = simplify(kron(pauliExp[j], pauliExp[k]))
+#         println(replace(replace(replace(replace(replace(replace(String(latexify(expr)), "exp"=>"e^"), "("=>"{"), ")"=>"}"), "1.0*I*"=>"i"), "I"=>"i"), "*"=>""))
+#     end
+# end
+
+testTime = pi
+
 for (j, sigma_j) in enumerate(pauliMatrices)
     for (k, sigma_k) in enumerate(pauliMatrices)
         println("$j, $k:")
-        expr = simplify(kron(pauliExp[j], pauliExp[k]))
-        println(replace(replace(replace(replace(replace(replace(String(latexify(expr)), "exp"=>"e^"), "("=>"{"), ")"=>"}"), "1.0*I*"=>"i"), "I"=>"i"), "*"=>""))
+        tensorProduct = kron(sigma_j, sigma_k)
+        expr1 = eigvecs(tensorProduct) * diagm( exp.((t*im) .* eigvals(tensorProduct)) ) * inv(eigvecs(tensorProduct))
+        expr2 = simplify(kron(pauliExp[j], pauliExp[k]))
+
+        println("kron first, then exponential:")
+        println(latexify(expr1.evalf(subs=Dict(t=>testTime))))
+        println("exp first, kron second:")
+        println(latexify(expr2.evalf(subs=Dict(t=>testTime))))
     end
 end
